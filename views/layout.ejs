@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/coffee.svg" type="image/x-icon">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="content">
+        <div class="menu">
+            <div class="title"><img src="images/coffee.svg" /> <span>Inventory</span></div>
+            <div class="navigation">
+                <ul>
+                    <li <% if(selected === 'home') { %> class="selected" <% } %>><img src="images/home.svg" /><span>Home</span></li>
+                    <li <% if(selected === 'items') { %> class="selected" <% } %>><img src="images/archive.svg" /><span>Items</span></li>
+                    <li <% if(selected === 'categories') { %> class="selected" <% } %>><img src="images/layers.svg" /><span>Categories</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-content">
+            <%- layoutContent %>
+        </div>
+        <div class="section-footer">This Inventory Application was made for The Odin Project</div>
+    </div>
+  </body>
+</html>
