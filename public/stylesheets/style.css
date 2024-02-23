@@ -26,17 +26,6 @@ body {
   color: #fafcff;
 }
 
-.section-content {
-  grid-area: 1 / 2 / 2 / 3;
-  padding: 1.5rem;
-}
-
-.section-footer {
-  grid-area: 2 / 2 / 3 / 3;
-  text-align: center;
-  font-size: 0.8rem;
-}
-
 .menu .title {
   padding-left: 0.8rem;
   padding-top: 1rem;
@@ -48,6 +37,11 @@ body {
 
 .menu .title img {
   display: inline-block;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
 }
 
 .navigation ul {
@@ -84,4 +78,29 @@ body {
   padding-left: 6%;
   background-color: #141920;
   transform: scale(1.05);
+}
+
+.section-content {
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 2rem;
+}
+
+.section-footer {
+  grid-area: 2 / 2 / 3 / 3;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.addEntryButton {
+  font-size: 1rem;
+  padding: 0.35rem 0.8rem;
+  background-color: #1d2636;
+  color: white;
+  border: 1px solid #1d2636;
+  border-radius: 0.4rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.addEntryButton:hover {
+  transform: scale(1.1)
 }

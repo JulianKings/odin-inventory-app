@@ -1,0 +1,32 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= title %></h1>
+    <p>Welcome to our <%= title %></p>
+
+    <button onclick="location.href='item/create';" class="addEntryButton">Add new item</button>
+
+    <div class="inventoryItemContainer">
+        <% for(item of items_list) { %>
+            <div class="inventoryItem">
+                <div class="inventoryItemImage">
+                    <img src='<%= item.display_image %>' />
+                </div>
+                <div class="inventoryItemContent">
+                    <div class="inventoryItemName"><%= item.name %></div>
+                    <div class="inventoryItemDescription"><%= item.short_desc %></div>
+                    <div class="inventoryItemInformation">
+                        <div class="inventoryItemPrice"><%= item.price %> EUR</div>
+                        <div class="inventoryItemCategory"><%= item.category.name %></div>
+                        <div class="inventoryItemRating"><%- item.print_rating %></div>                
+                    </div>
+                    <div class="inventoryItemActions">
+                        <div class="inventoryItemAmount"><%= item.amount %> in stock</div>
+                        <div class="inventoryItemMore">
+                            <button onclick="location.href='<%= item.url %>';" type='button'>About this item</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>

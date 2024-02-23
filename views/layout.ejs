@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/coffee.svg" type="image/x-icon">
-    <title><%= title %></title>
+    <title>Inventory Site: <%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% if(selected === 'home') { %> <link rel='stylesheet' href='/stylesheets/home.css' /> <% } %>
+    <% if(selected === 'items') { %> <link rel='stylesheet' href='/stylesheets/items.css' /> <% } %>
+    <% if(selected === 'categories') { %> <link rel='stylesheet' href='/stylesheets/categories.css' /> <% } %>
   </head>
   <body>
     <div class="content">
@@ -13,9 +16,9 @@
             <div class="title"><img src="images/coffee.svg" /> <span>Inventory</span></div>
             <div class="navigation">
                 <ul>
-                    <li <% if(selected === 'home') { %> class="selected" <% } %>><img src="images/home.svg" /><span>Home</span></li>
-                    <li <% if(selected === 'items') { %> class="selected" <% } %>><img src="images/archive.svg" /><span>Items</span></li>
-                    <li <% if(selected === 'categories') { %> class="selected" <% } %>><img src="images/layers.svg" /><span>Categories</span></li>
+                    <li <% if(selected === 'home') { %> class="selected" <% } %>><img src="images/home.svg" /><span><a href='/'>Home</a></span></li>
+                    <li <% if(selected === 'items') { %> class="selected" <% } %>><img src="images/archive.svg" /><span><a href='/items'>Items</a></span></li>
+                    <li <% if(selected === 'categories') { %> class="selected" <% } %>><img src="images/layers.svg" /><span><a href='/categories'>Categories</a></span></li>
                 </ul>
             </div>
         </div>

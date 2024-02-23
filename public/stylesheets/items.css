@@ -1,0 +1,96 @@
+.inventoryItemContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr) );
+}
+
+.inventoryItem {
+    background-color: white;
+    display: flex;
+    padding: 0.8rem;
+    justify-content: center;
+    margin: 1rem 1rem;
+    border-radius: 0.4rem;
+    box-shadow: 0.1rem 0.1em 0.3rem rgb(0, 0, 0, 0.1);
+}
+
+.inventoryItem .inventoryItemImage {
+    width: 35%;
+    align-self: center;
+    padding: 0.5rem 0.2rem;
+}
+
+.inventoryItem .inventoryItemImage img {
+    width: 100%;
+}
+
+.inventoryItem .inventoryItemContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem;
+}
+
+.inventoryItemContent .inventoryItemName {
+    font-weight: bold;
+}
+
+.inventoryItemContent .inventoryItemDescription {
+    font-size: 1rem;
+}
+
+.inventoryItemContent .inventoryItemInformation {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    padding: 0.4rem 0;
+}
+
+.inventoryItemInformation .inventoryItemPrice {
+    background-color: rgba(0, 1, 78, 0.9);
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+}
+
+.inventoryItemInformation .inventoryItemCategory {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+}
+
+.inventoryItemContent .inventoryItemActions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.inventoryItemActions button {
+    font-size: 1rem;
+    padding: 0.35rem 0.8rem;
+    background-color: rgba(0, 1, 78, 1);
+    color: white;
+    border: 1px solid rgba(0, 1, 78, 1);
+    border-radius: 0.4rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.inventoryItemActions button:hover {
+    background-color: rgb(0, 1, 58);
+    transform: scale(1.1)
+}
+
+.inventoryItemActions button:active {
+    background-color: rgb(0, 1, 34);
+    transform: scale(1.1)
+}
+
+.inventoryItemActions .inventoryItemAmount {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+}

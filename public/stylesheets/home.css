@@ -1,0 +1,19 @@
+.mainContent {
+    display: grid;
+    grid-template-columns: 1fr 14rem;
+}
+
+.statistics {
+    background-color: white;
+    border-radius: 0.4rem;
+    box-shadow: 0.1rem 0.3em 0.3rem rgb(0, 0, 0, 0.05);
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+}
+
+.statistics h1 {
+    padding-top: 0;
+    margin-top: 0;
+}

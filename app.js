@@ -10,7 +10,6 @@ var connectLiveReload = require("connect-livereload");
 var expressLayouts = require('express-ejs-layouts');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
@@ -60,7 +59,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

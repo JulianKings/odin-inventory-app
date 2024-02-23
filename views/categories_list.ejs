@@ -1,0 +1,22 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= title %></h1>
+    <p>Welcome to our <%= title %></p>
+    <button onclick="location.href='category/create';" class="addEntryButton">Add new category</button>
+
+    <div class="categoryItemContainer">
+        <% for(category of categories_list) { %>
+            <div class="categoryItem">
+                <div class="categoryItemContent">
+                    <div class="categoryItemName"><%= category.name %></div>
+                    <div class="categoryItemDescription"><%= category.description %></div>
+                    <div class="categoryItemActions">
+                        <div class="categoryItemMore">
+                            <button onclick="location.href='<%= category.url %>';" type='button'>About this category</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
