@@ -1,0 +1,25 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= item.name %></h1>
+    <div class="singleItem">
+        <div class="singleItemImage">
+            <img src='<%= item.display_image %>' />
+        </div>
+        <div class="singleItemContent">
+            <div class="singleItemName"><%= item.name %></div>
+            <div class="singleItemDescription"><%= item.description %></div>
+            <div class="singleItemInformation">
+                <div class="singleItemPrice"><strong>Price:</strong> <%= item.price %> EUR</div>
+                <div class="singleItemCategory"><strong>Category:</strong> <%= item.category.name %></div>
+                <div class="singleItemRating"><strong>Rating:</strong> <%- item.print_rating %></div>                
+            </div>
+            <div class="singleItemActions">
+                <div class="singleItemAmount"><strong>Amount currently in stock:</strong> <%= item.amount %></div>
+                <div class="singleItemMore">
+                    <button onclick="location.href='<%= item.url %>/delete';" type='button'>Delete this item</button>
+                    <button onclick="location.href='<%= item.url %>/update';" type='button'>Update this item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");
-  }, 100);
+  }, 300);
 });
 
 // Load settings
@@ -73,7 +73,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', {layout: false });
+  res.render('error', { title: 'Error page', selected: 'error' });
 });
 
 module.exports = app;

@@ -1,0 +1,16 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= category.name %></h1>    
+    <div class="categoryItem">
+        <div class="categoryItemContent">
+            <div class="categoryItemName"><%= category.name %></div>
+            <div class="categoryItemDescription"><%= category.description %></div>
+            <div class="categorySpecialItemActions">
+                <div class="categorySpecialItemMore">
+                    <button onclick="location.href='<%= category.url %>/delete';" type='button'>Delete this category</button>
+                    <button onclick="location.href='<%= category.url %>/update';" type='button'>Update this category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

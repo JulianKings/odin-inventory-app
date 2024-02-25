@@ -14,7 +14,7 @@ const itemSchema = new schema({
 
 // virtuals
 itemSchema.virtual("url").get(function() {
-    return `/items/${this._id}`;
+    return `/item/${this._id}`;
 });
 
 itemSchema.virtual('short_desc').get(function() {
@@ -27,7 +27,7 @@ itemSchema.virtual('short_desc').get(function() {
 });
 
 itemSchema.virtual('display_image').get(function() {
-    return (this.imageUrl === '') ? 'images/default_image.svg' : this.imageUrl;
+    return (this.imageUrl === '') ? '/images/default_image.svg' : this.imageUrl;
 });
 
 itemSchema.virtual('print_rating').get(function() {
@@ -35,11 +35,11 @@ itemSchema.virtual('print_rating').get(function() {
     let starsCount = Math.round(this.rating);
     for(let i = 0; i < starsCount; i++)
     {
-        ratingHTML += '<img src="images/filled_star.svg" />'
+        ratingHTML += '<img src="/images/filled_star.svg" />'
     }
     for(let i = 0; i < (5-starsCount); i++)
     {
-        ratingHTML += '<img src="images/star.svg" />'
+        ratingHTML += '<img src="/images/star.svg" />'
     }
     return ratingHTML;
 })

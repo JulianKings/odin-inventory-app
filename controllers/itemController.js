@@ -32,3 +32,75 @@ exports.items_list = asyncHandler(async (req, res, next) => {
       items_list: allItems,
     });
 });
+
+exports.item_detail = asyncHandler(async (req, res, next) => {
+    const itemDetail = await item.findById(req.params.id).populate("category").exec();
+    
+    if(itemDetail === null)
+    {
+        // No results
+        const err = new Error("Item not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render("item_detail", {      
+        title: itemDetail.name,
+        selected: 'items',
+        item: itemDetail,
+    });
+});
+
+exports.item_create_get = asyncHandler(async (req, res, next) => {
+    res.render("index", {      
+        title: "Place Holder",
+        selected: 'items',
+        items_count: -1,
+        categories_count: -1,
+    });
+});
+
+exports.item_create_post = asyncHandler(async (req, res, next) => {
+    res.render("index", {      
+        title: "Place Holder",
+        selected: 'items',
+        items_count: -1,
+        categories_count: -1,
+    });
+});
+
+exports.item_delete_get = asyncHandler(async (req, res, next) => {
+    res.render("index", {      
+        title: "Place Holder",
+        selected: 'items',
+        items_count: -1,
+        categories_count: -1,
+    });
+});
+
+exports.item_delete_post = asyncHandler(async (req, res, next) => {
+    res.render("index", {      
+        title: "Place Holder",
+        selected: 'items',
+        items_count: -1,
+        categories_count: -1,
+    });
+});
+
+exports.item_update_get = asyncHandler(async (req, res, next) => {
+    res.render("index", {      
+        title: "Place Holder",
+        selected: 'items',
+        items_count: -1,
+        categories_count: -1,
+    });
+});
+
+exports.item_update_post = asyncHandler(async (req, res, next) => {
+    res.render("index", {      
+        title: "Place Holder",
+        selected: 'items',
+        items_count: -1,
+        categories_count: -1,
+    });
+});

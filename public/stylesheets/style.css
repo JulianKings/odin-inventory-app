@@ -60,6 +60,7 @@ body {
   padding-left: 0.4rem;
   position: relative;
   transition: all .2s ease-in-out;
+  cursor: grab;
 }
 
 .navigation ul li:hover {
