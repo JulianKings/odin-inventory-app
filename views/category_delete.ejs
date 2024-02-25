@@ -1,0 +1,29 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= title %></h1>
+    <% if(errors) { %>
+        <ul>
+            <% for(error of errors) { %>
+                <li><%= error.msg %></li>
+            <% } %>
+        </ul>
+    <% } %>
+    <% if(categoryItems && categoryItems.length > 0) { %>
+        <p>This category can't be deleted until you you delete the following items:</p>
+        <ul>
+            <% for(item of categoryItems) { %>
+                <li><a href="<%= item.url %>"><%= item.name %></a></li>
+            <% } %>
+        </ul>
+    <% } else { %>
+        <p>Are you sure you want to delete <%= category.name %>?</p>
+        <form method="post">
+            <div class="formGroup">
+                <label for="categorySecurityPassword">Security password</label>
+                <input type="password" placeholder="Security password for deletion" name="category_password" id="categorySecurityPassword" required />
+            </div>
+            <input type="hidden" id="categoryId" name="category_id" value="<%= category._id %>" />
+            <button type="submit" class="addEntryButton">Delete</button>
+        </form>
+    <% } %>
+</div>

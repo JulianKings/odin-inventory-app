@@ -1,0 +1,20 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= title %></h1>
+    <% if(errors) { %>
+        <ul>
+            <% for(error of errors) { %>
+                <li><%= error.msg %></li>
+            <% } %>
+        </ul>
+    <% } %>
+    <p>Are you sure you want to delete <%= item.name %>?</p>
+    <form method="post">
+        <div class="formGroup">
+            <label for="itemSecurityPassword">Security password</label>
+            <input type="password" placeholder="Security password for deletion" name="item_password" id="itemSecurityPassword" required />
+        </div>
+        <input type="hidden" id="itemId" name="item_id" value="<%= item._id %>" />
+        <button type="submit" class="addEntryButton">Delete</button>
+    </form>
+</div>

@@ -35,6 +35,8 @@ for (const line of properties) {
 
 var app = express();
 
+app.set('modify_secret_password', settings.secret_password);
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);

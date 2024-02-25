@@ -40,11 +40,11 @@
         <div class="formGroup">
             <label for="itemRating">Rating </label>
             <select name="item_rating" id="itemRating" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option <%= ((item && item.rating === 1) ? 'selected' : '') %> value="1">1</option>
+                <option <%= ((item && item.rating === 2) ? 'selected' : '') %> value="2">2</option>
+                <option <%= ((item && item.rating === 3) ? 'selected' : '') %> value="3">3</option>
+                <option <%= ((item && item.rating === 4) ? 'selected' : '') %> value="4">4</option>
+                <option <%= ((item && item.rating === 5) ? 'selected' : '') %> value="5">5</option>
             </select>
         </div>
         <div class="formGroup">
