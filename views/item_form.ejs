@@ -1,0 +1,64 @@
+<%- contentFor('layoutContent') %>
+<div class="mainContent">
+    <h1><%= title %></h1>
+    <% if(errors) { %>
+        <ul>
+            <% for(error of errors) { %>
+                <li><%= error.msg %></li>
+            <% } %>
+        </ul>
+    <% } %>
+    <form method="post">
+        <div class="formGroup">
+            <label for="itemName">Name </label>
+            <input type="text" placeholder="Name of the article" name="item_name" id="itemName" required 
+                value="<%= ((item) ? item.name : '') %>" />
+        </div>
+        <div class="formGroup">
+            <label for="itemDescription">Description </label>
+            <textarea cols="40" rows="3" placeholder="Description of the article" name="item_description" id="itemDescription" required><%= ((item) ? item.description : '') %></textarea>
+        </div>
+        <div class="formGroup">
+            <label for="itemPrice">Price </label>
+            <input type="number" placeholder="0" name="item_price" id="itemPrice" required 
+                value="<%= ((item) ? item.price : '') %>" />
+        </div>
+        <div class="formGroup">
+            <label for="itemCategory">Category </label>
+            <select name="item_category" id="itemCategory" required>
+                <% for(category of categories_list) {
+                    let categorySelected = '';
+                    if(item && category._id === item.category)
+                    {
+                        categorySelected = 'selected';
+                    }
+                     %>
+                    <option value="<%= category._id %>" <%= categorySelected %> ><%= category.name %></option>
+                <% } %>
+            </select>
+        </div>
+        <div class="formGroup">
+            <label for="itemRating">Rating </label>
+            <select name="item_rating" id="itemRating" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="formGroup">
+            <label for="itemAmount">Amount in stock </label>
+            <input type="number" placeholder="0" name="item_amount" id="itemAmount" required 
+                value="<%= ((item) ? item.amount : '') %>" />
+        </div>
+        <div class="formGroup">
+            <label for="itemImage">ImageURL </label>
+            <input type="text" placeholder="Url of the image for the article" name="item_image" id="itemImage" 
+                value="<%= ((item) ? item.imageUrl : '') %>" />
+        </div>
+        <div class="formButton">
+            <button type="submit" class="addEntryButton">Submit</button>
+        </div>
+    </form>
+</div>

@@ -105,3 +105,39 @@ body {
 .addEntryButton:hover {
   transform: scale(1.1)
 }
+
+.formGroup {
+  margin: 0.6rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.4rem;
+}
+
+.formGroup label
+{
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.formGroup input, .formGroup select, .formGroup textarea
+{
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.formGroup select
+{
+  background-color: white;
+}
+
+.formGroup input:focus, .formGroup select:focus, .formGroup textarea:focus {
+  border: 1px solid #0c4981;
+  outline: none;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.formButton {
+  padding: 0.6rem 0;
+}

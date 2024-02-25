@@ -26,7 +26,7 @@ exports.home = asyncHandler(async (req, res, next) => {
 // Display list of all items
 exports.items_list = asyncHandler(async (req, res, next) => {
     const allItems = await item.find().sort({ rating: -1 }).populate("category").exec();
-    res.render("items_list", {
+    res.render("item_list", {
       title: "Items List",
       selected: 'items',
       items_list: allItems,
@@ -52,22 +52,84 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {
-    res.render("index", {      
-        title: "Place Holder",
+    const allCategories = await category.find().sort({ name: 1 }).exec();
+    
+    res.render("item_form", {      
+        title: "Create Item",
         selected: 'items',
-        items_count: -1,
-        categories_count: -1,
+        categories_list: allCategories,
+        item: undefined,
+        errors: undefined,
     });
 });
 
-exports.item_create_post = asyncHandler(async (req, res, next) => {
-    res.render("index", {      
-        title: "Place Holder",
-        selected: 'items',
-        items_count: -1,
-        categories_count: -1,
-    });
-});
+exports.item_create_post = [
+    // Validate and sanitize fields.
+    body("item_name", "Item name must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("item_description", "Item description must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("item_price", "Item price must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .isLength({ max: 7 })
+        .withMessage('Item price must not exceed 999.999'),
+    body("item_category", "Item category must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("item_amount", "Item stock must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .isLength({ max: 10 })
+        .withMessage('Item sock must not exceed 9.999.999.999'), 
+    body("item_rating", "Item rating must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .isInt({min: 1, max: 5})
+        .withMessage("Rating can't exceed 5."),
+    body("item_image", "")
+    .trim()
+    .optional({ values: "falsy" })
+    .escape(),   
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        const newItem = new item({
+            name: req.body.item_name,
+            description: req.body.item_description,
+            price: req.body.item_price,
+            category: req.body.item_category,
+            amount: req.body.item_amount,
+            imageUrl: req.body.item_image,
+            rating: req.body.item_rating,
+        });
+
+        if(!errors.isEmpty())
+        {
+            const allCategories = await category.find().sort({ name: 1 }).exec();
+
+            res.render("item_form", {      
+                title: "Create Item",
+                selected: 'items',
+                categories_list: allCategories,
+                item: newItem,
+                errors: errors.array(),
+            });
+        } else {
+            await newItem.save();
+            res.redirect(newItem.url);
+        }
+    }),
+]
 
 exports.item_delete_get = asyncHandler(async (req, res, next) => {
     res.render("index", {      
