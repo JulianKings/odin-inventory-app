@@ -60,6 +60,7 @@ exports.item_create_get = asyncHandler(async (req, res, next) => {
         categories_list: allCategories,
         item: undefined,
         errors: undefined,
+        updating: false,
     });
 });
 
@@ -131,6 +132,7 @@ exports.item_create_post = [
                 categories_list: allCategories,
                 item: newItem,
                 errors: errors.array(),
+                updating: false,
             });
         } else {
             await newItem.save();
@@ -219,6 +221,7 @@ exports.item_update_get = asyncHandler(async (req, res, next) => {
         categories_list: allCategories,
         item: itemDetail,
         errors: undefined,
+        updating: true,
     });
 });
 
@@ -261,6 +264,13 @@ exports.item_update_post = [
 
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
+        const errorsArray = errors.array();
+
+        // check password
+        if(req.app.settings.modify_secret_password !== req.body.item_password)
+        {
+            errorsArray.push({msg: 'Invalid security password'});
+        }
 
         let imagePath = '';
         if(req.file)
@@ -281,16 +291,17 @@ exports.item_update_post = [
             _id: req.params.id, // This is required, or a new ID will be assigned!
         });
 
-        if(!errors.isEmpty())
+        if(errorsArray.length > 0)
         {
             const allCategories = await category.find().sort({ name: 1 }).exec();
 
             res.render("item_form", {      
-                title: "Create Item",
+                title: "Update Item",
                 selected: 'items',
                 categories_list: allCategories,
                 item: newItem,
-                errors: errors.array(),
+                errors: errorsArray,
+                updating: true,
             });
         } else {
             const updatedItem = await item.findByIdAndUpdate(req.params.id, newItem, {});

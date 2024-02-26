@@ -58,6 +58,12 @@
                 value="<%= ((item) ? item.imageUrl : '') %>" />
             <input type="file" name="image" />
         </div>
+        <% if(updating) { %>
+            <div class="formGroup">
+                <label for="itemSecurityPassword">Security password</label>
+                <input type="password" placeholder="Security password for deletion" name="item_password" id="itemSecurityPassword" required />
+            </div>
+        <% } %>
         <div class="formButton">
             <button type="submit" class="addEntryButton">Submit</button>
         </div>

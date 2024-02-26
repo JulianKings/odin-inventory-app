@@ -18,6 +18,12 @@
             <label for="categoryDescription">Description </label>
             <textarea cols="40" rows="3" placeholder="Description of the category" name="category_description" id="itemCategory" required><%= ((category) ? category.description : '') %></textarea>
         </div>
+        <% if(updating) { %>
+            <div class="formGroup">
+                <label for="categorySecurityPassword">Security password</label>
+                <input type="password" placeholder="Security password for deletion" name="category_password" id="categorySecurityPassword" required />
+            </div>
+        <% } %>
         <button type="submit" class="addEntryButton">Submit</button>
     </form>
 </div>

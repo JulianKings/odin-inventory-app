@@ -38,6 +38,7 @@ exports.category_create_get = asyncHandler(async (req, res, next) => {
         selected: 'categories',
         category: undefined,
         errors: undefined,
+        updating: false,
     });
 });
 
@@ -67,6 +68,7 @@ exports.category_create_post = [
             selected: 'categories',
             category: newCategory,
             errors: errors.array(),
+            updating: false,
         });
     } else {
         await newCategory.save();
@@ -171,6 +173,7 @@ exports.category_update_get = asyncHandler(async (req, res, next) => {
         selected: 'categories',
         category: categoryDetail,
         errors: undefined,
+        updating: true,
     });
 });
 
@@ -187,6 +190,7 @@ exports.category_update_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
+    const errorsArray = errors.array();
 
     const newCategory = new category({
         name: req.body.category_name,
@@ -194,13 +198,20 @@ exports.category_update_post = [
         _id: req.params.id, // This is required, or a new ID will be assigned!
     });
 
-    if(!errors.isEmpty())
+    // check password
+    if(req.app.settings.modify_secret_password !== req.body.category_password)
+    {
+        errorsArray.push({msg: 'Invalid security password'});
+    }
+
+    if(errorsArray.length > 0)
     {
         res.render("category_form", {      
-            title: "Create Category",
+            title: "Update Category",
             selected: 'categories',
             category: newCategory,
-            errors: errors.array(),
+            errors: errorsArray,
+            updating: true,
         });
     } else {
         const updatedCategory = await category.findByIdAndUpdate(req.params.id, newCategory, {});
