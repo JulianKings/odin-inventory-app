@@ -5,18 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const readline = require('readline-sync');
 const fs = require('fs');
-var livereload = require("livereload");
 var connectLiveReload = require("connect-livereload");
 var expressLayouts = require('express-ejs-layouts');
 
 var indexRouter = require('./routes/index');
-
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 300);
-});
 
 // Load settings
 const properties = require('fs').readFileSync('settings.properties', 'utf-8')
@@ -51,8 +43,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(expressLayouts);
-
-app.use(connectLiveReload());
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -103,13 +103,21 @@ exports.item_create_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
+        let imagePath = '';
+        if(req.file)
+        {
+            imagePath = '/images/uploads/' + (req.file.filename);
+        } else {
+            imagePath = req.body.item_image;
+        }
+
         const newItem = new item({
             name: req.body.item_name,
             description: req.body.item_description,
             price: req.body.item_price,
             category: req.body.item_category,
             amount: req.body.item_amount,
-            imageUrl: req.body.item_image,
+            imageUrl: imagePath,
             rating: req.body.item_rating,
         });
 
@@ -254,13 +262,21 @@ exports.item_update_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
+        let imagePath = '';
+        if(req.file)
+        {
+            imagePath = '/images/uploads/' + (req.file.filename);
+        } else {
+            imagePath = req.body.item_image;
+        }
+
         const newItem = new item({
             name: req.body.item_name,
             description: req.body.item_description,
             price: req.body.item_price,
             category: req.body.item_category,
             amount: req.body.item_amount,
-            imageUrl: req.body.item_image,
+            imageUrl: imagePath,
             rating: req.body.item_rating,
             _id: req.params.id, // This is required, or a new ID will be assigned!
         });

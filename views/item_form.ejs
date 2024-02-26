@@ -8,7 +8,7 @@
             <% } %>
         </ul>
     <% } %>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="formGroup">
             <label for="itemName">Name </label>
             <input type="text" placeholder="Name of the article" name="item_name" id="itemName" required 
@@ -53,9 +53,10 @@
                 value="<%= ((item) ? item.amount : '') %>" />
         </div>
         <div class="formGroup">
-            <label for="itemImage">ImageURL </label>
+            <label for="itemImage">Image URL </label>
             <input type="text" placeholder="Url of the image for the article" name="item_image" id="itemImage" 
                 value="<%= ((item) ? item.imageUrl : '') %>" />
+            <input type="file" name="image" />
         </div>
         <div class="formButton">
             <button type="submit" class="addEntryButton">Submit</button>
