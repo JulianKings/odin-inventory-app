@@ -3,31 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const readline = require('readline-sync');
-const fs = require('fs');
-var connectLiveReload = require("connect-livereload");
 var expressLayouts = require('express-ejs-layouts');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 
-// Load settings
-const properties = require('fs').readFileSync('settings.properties', 'utf-8')
-    .split('\n')
-    .filter(Boolean);
-
-let settings = { };
-
-for (const line of properties) {
-  const splitIndex = line.indexOf('=');
-  const settingKey = line.slice(0, splitIndex);
-  const settingValue = line.slice(splitIndex + 1);
-
-  settings[settingKey] = settingValue;
-};
-
 var app = express();
 
-app.set('modify_secret_password', settings.secret_password);
+app.set('modify_secret_password', process.env.SECRET_PWD);
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
@@ -35,7 +18,7 @@ mongoose.set("strictQuery", false);
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(settings.database_url);
+  await mongoose.connect(process.env.MONGODB_URI);
 }
 
 // view engine setup
